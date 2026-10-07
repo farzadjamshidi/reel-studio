@@ -4,6 +4,8 @@ A canvas-based editor for short vertical social videos, built with **Angular, Ng
 
 It covers the core loop of a social video editor: layered media and text on a WebGL canvas, a multi-track timeline, and full undo/redo.
 
+**Live demo: [reel-studio-rho.vercel.app](https://reel-studio-rho.vercel.app/)**. It works best in a desktop browser.
+
 ![Editor screenshot](docs/screenshot.png)
 
 ## Features
