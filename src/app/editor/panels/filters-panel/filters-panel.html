@@ -1,0 +1,21 @@
+<h2>Filters</h2>
+@if (clip(); as media) {
+  <div class="grid">
+    @for (preset of presets; track preset.id) {
+      <button type="button" class="preset" [class.active]="media.filter.preset === preset.id" (click)="setPreset(preset.id)">
+        <span class="preview" [style.background-image]="preview()" [style.filter]="preset.css"></span>
+        <span>{{ preset.label }}</span>
+      </button>
+    }
+  </div>
+  <label class="field">
+    <span class="row"><span>Intensity</span><span>{{ percent(media.filter.intensity) }}</span></span>
+    <input type="range" min="0" max="1" step="0.01" [value]="media.filter.intensity" [disabled]="media.filter.preset === 'none'" (input)="setIntensity($event)" (change)="endGesture()" />
+  </label>
+  <label class="field">
+    <span class="row"><span>Opacity</span><span>{{ percent(media.opacity) }}</span></span>
+    <input type="range" min="0" max="1" step="0.01" [value]="media.opacity" (input)="setOpacity($event)" (change)="endGesture()" />
+  </label>
+} @else {
+  <p class="hint">Select a video or image clip to apply a filter. Filters run on the GPU as PixiJS shaders.</p>
+}

@@ -1,0 +1,32 @@
+<header>
+  <div class="left">
+    <span class="brand"><span class="logo">R</span>Reel Studio</span>
+    <span class="divider"></span>
+    <span class="format"><app-icon name="portrait" [size]="15" />9:16 Portrait</span>
+  </div>
+
+  <input
+    class="name"
+    [value]="name()"
+    (input)="rename($event)"
+    (blur)="nameGesture = newGesture()"
+    (keydown.enter)="$any($event.target).blur()"
+    aria-label="Project name"
+    spellcheck="false"
+  />
+
+  <div class="right">
+    <button class="icon-btn" type="button" (click)="commands.undo()" [disabled]="!canUndo()" [title]="'Undo (' + mod + 'Z)'" aria-label="Undo">
+      <app-icon name="undo" />
+    </button>
+    <button class="icon-btn" type="button" (click)="commands.redo()" [disabled]="!canRedo()" [title]="'Redo (' + mod + '⇧Z)'" aria-label="Redo">
+      <app-icon name="redo" />
+    </button>
+    <button class="ghost" type="button" (click)="resetDemo()" title="Restore the demo project">
+      <app-icon name="reset" [size]="16" /><span class="label">Reset demo</span>
+    </button>
+    <button class="download" type="button" (click)="download()" [disabled]="exporting()" title="Export the current frame as a 1080×1920 PNG">
+      <app-icon name="download" [size]="16" />{{ exporting() ? 'Exporting…' : 'Download' }}
+    </button>
+  </div>
+</header>

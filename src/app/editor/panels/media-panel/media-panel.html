@@ -1,0 +1,35 @@
+<h2>Media</h2>
+<label
+  class="dropzone"
+  [class.over]="dragOver()"
+  (dragover)="$event.preventDefault(); dragOver.set(true)"
+  (dragleave)="dragOver.set(false)"
+  (drop)="onDrop($event)"
+>
+  <app-icon name="upload" [size]="22" />
+  <span><strong>Upload</strong> or drop video and images</span>
+  <input type="file" accept="video/*,image/*" multiple (change)="onPick($event)" hidden />
+</label>
+@if (error(); as message) {
+  <p class="error">{{ message }}</p>
+}
+<div class="grid">
+  @for (asset of assets(); track asset.id) {
+    <figure class="asset">
+      <div class="thumb" [style.background-image]="thumbFor(asset)">
+        @if (asset.kind === 'video') {
+          <span class="duration">{{ format(asset.duration ?? 0) }}</span>
+        }
+      </div>
+      <figcaption>{{ asset.name }}</figcaption>
+      <div class="actions">
+        <button class="btn small" type="button" (click)="commands.addAsset(asset, false)" title="Append to the main track">
+          <app-icon name="plus" [size]="14" />Add
+        </button>
+        <button class="btn small" type="button" (click)="commands.addAsset(asset, true)" title="Add above the video at the playhead">
+          <app-icon name="layers" [size]="14" />Overlay
+        </button>
+      </div>
+    </figure>
+  }
+</div>

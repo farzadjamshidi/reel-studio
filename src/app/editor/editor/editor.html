@@ -1,0 +1,11 @@
+<app-top-bar />
+<main class="workspace">
+  <div class="tools">
+    <app-tool-rail />
+    @if (panel()) {
+      <app-side-panel />
+    }
+  </div>
+  <app-canvas-stage class="stage" />
+</main>
+<app-timeline class="timeline" />

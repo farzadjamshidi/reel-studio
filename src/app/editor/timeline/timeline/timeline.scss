@@ -1,0 +1,211 @@
+:host {
+  display: block;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) 150px;
+  height: 100%;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgb(15 23 42 / 0.05);
+  overflow: hidden;
+}
+
+.transport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-right: 1px solid var(--border);
+
+  .buttons {
+    display: flex;
+    gap: 6px;
+  }
+
+  .time {
+    white-space: nowrap;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-faint);
+  }
+
+  .current {
+    color: var(--text);
+    font-weight: 600;
+  }
+}
+
+.scroller {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: auto;
+  background: var(--surface-muted);
+  touch-action: none;
+  user-select: none;
+}
+
+.content {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 12px;
+}
+
+.ruler {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: 26px;
+  background-color: var(--surface);
+  background-image: linear-gradient(to right, var(--tick) 1px, transparent 1px);
+  background-repeat: repeat-x;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+
+  .mark {
+    position: absolute;
+    top: 4px;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text-faint);
+    pointer-events: none;
+  }
+}
+
+.tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 8px;
+}
+
+.track {
+  position: relative;
+}
+
+.empty-hint {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent);
+  pointer-events: none;
+  will-change: transform;
+
+  .knob {
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 14px;
+    height: 18px;
+    border-radius: 4px 4px 7px 7px;
+    background: var(--accent);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+    pointer-events: auto;
+    cursor: ew-resize;
+  }
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 10px;
+  border-left: 1px solid var(--border);
+}
+
+.zoom {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  input {
+    width: 58px;
+    accent-color: var(--accent);
+  }
+
+  .fit {
+    border: 0;
+    background: none;
+    padding: 4px;
+    font: inherit;
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+
+    &:hover { color: var(--text); }
+  }
+}
+
+.clip-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-muted);
+    color: var(--text);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  &.small {
+    width: 26px;
+    height: 26px;
+  }
+
+  &.play {
+    width: 40px;
+    height: 40px;
+    color: var(--text);
+  }
+}
+
+@media (max-width: 720px) {
+  .timeline {
+    grid-template-columns: 88px minmax(0, 1fr);
+  }
+
+  .side {
+    display: none;
+  }
+
+  .transport .time {
+    font-size: 10px;
+  }
+}

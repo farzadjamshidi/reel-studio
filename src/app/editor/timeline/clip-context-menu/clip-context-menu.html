@@ -1,0 +1,11 @@
+<div class="menu" role="menu" [style.left.px]="position().x" [style.top.px]="position().y" (pointerdown)="$event.stopPropagation()">
+  <button role="menuitem" class="split" [disabled]="!canSplit()" (click)="choose('split')">
+    <app-icon name="split" [size]="22" /><span>Split Clip</span><kbd>S</kbd>
+  </button>
+  <button role="menuitem" (click)="choose('duplicate')">
+    <app-icon name="duplicate" [size]="22" /><span>Duplicate</span><kbd>{{ mod }} D</kbd>
+  </button>
+  <button role="menuitem" (click)="choose('delete')">
+    <app-icon name="delete" [size]="22" /><span>Delete</span><kbd>⌫</kbd>
+  </button>
+</div>

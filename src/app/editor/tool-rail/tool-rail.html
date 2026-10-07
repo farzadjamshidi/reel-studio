@@ -1,0 +1,8 @@
+<nav aria-label="Tools">
+  @for (tool of tools; track tool.id) {
+    <button type="button" [class.active]="active() === tool.id" (click)="toggle(tool.id)" [attr.aria-pressed]="active() === tool.id">
+      <app-icon [name]="tool.icon" [size]="22" />
+      <span>{{ tool.label }}</span>
+    </button>
+  }
+</nav>

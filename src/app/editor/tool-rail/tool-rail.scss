@@ -1,0 +1,29 @@
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 6px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgb(15 23 42 / 0.06);
+}
+button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 52px;
+  padding: 8px 0 6px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-faint);
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+button:hover { color: var(--text); background: var(--surface-muted); }
+button.active { color: var(--accent-strong); background: var(--accent-soft); }
+@media (max-width: 720px) {
+  nav { flex-direction: row; }
+}

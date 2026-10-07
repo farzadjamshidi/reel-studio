@@ -1,0 +1,14 @@
+@if (!compact()) {
+  <div class="filmstrip" [style.background-image]="imageStrip()">
+    @for (frame of frames(); track frame.left) {
+      <img [src]="frame.src" [style.left.px]="frame.left" [style.width.px]="frame.width" alt="" draggable="false" />
+    }
+  </div>
+}
+<div class="label">
+  <app-icon [name]="icon()" [size]="13" />
+  <span class="name">{{ label() }}</span>
+  <span class="badge">{{ durationLabel() }}</span>
+</div>
+<div class="handle start" (pointerdown)="onDown($event, 'start')"></div>
+<div class="handle end" (pointerdown)="onDown($event, 'end')"></div>

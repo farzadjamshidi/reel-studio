@@ -1,0 +1,27 @@
+aside {
+  position: relative;
+  box-sizing: border-box;
+  width: 280px;
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgb(15 23 42 / 0.06);
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+.close:hover { background: var(--surface-muted); color: var(--text); }
+@media (max-width: 720px) {
+  aside { width: 100%; height: auto; max-height: 260px; }
+}

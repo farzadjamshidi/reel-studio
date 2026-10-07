@@ -1,0 +1,29 @@
+.menu {
+  position: fixed;
+  z-index: 50;
+  width: 220px; // Keep in sync with MENU_WIDTH in clip-context-menu.ts.
+  padding: 6px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgb(15 23 42 / 0.18), 0 0 0 1px var(--border);
+}
+button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+}
+button:hover:not(:disabled) { background: var(--surface-muted); color: var(--text); }
+button.split:not(:disabled) { color: var(--accent-strong); }
+button:disabled { opacity: 0.4; cursor: default; }
+span { flex: 1; }
+kbd { font: inherit; font-size: 13px; color: var(--text-faint); }

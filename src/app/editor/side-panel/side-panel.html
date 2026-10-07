@@ -1,0 +1,9 @@
+<aside>
+  <button class="close" type="button" (click)="close()" aria-label="Close panel"><app-icon name="close" [size]="16" /></button>
+  @switch (panel()) {
+    @case ('media') { <app-media-panel /> }
+    @case ('text') { <app-text-panel /> }
+    @case ('filters') { <app-filters-panel /> }
+    @case ('background') { <app-background-panel /> }
+  }
+</aside>

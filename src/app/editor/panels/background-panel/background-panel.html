@@ -1,0 +1,11 @@
+<h2>Background</h2>
+<p class="hint">Shown wherever no clip covers the frame, for example around a scaled-down video.</p>
+<div class="swatches">
+  @for (color of colors; track color) {
+    <button type="button" class="swatch big" [class.active]="background() === color" [style.background]="color" (click)="set(color)" [attr.aria-label]="'Background ' + color"></button>
+  }
+</div>
+<label class="field">
+  <span>Custom colour</span>
+  <input type="color" [value]="background()" (change)="set($any($event.target).value)" />
+</label>

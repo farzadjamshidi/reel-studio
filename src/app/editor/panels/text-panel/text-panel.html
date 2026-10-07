@@ -1,0 +1,53 @@
+<h2>Text</h2>
+<div class="presets">
+  <button type="button" class="preset heading" (click)="commands.addText('heading')">Add a heading</button>
+  <button type="button" class="preset subtitle" (click)="commands.addText('subtitle')">Add a subtitle</button>
+  <button type="button" class="preset label" (click)="commands.addText('label')">Add a label</button>
+</div>
+
+@if (clip(); as text) {
+  <section class="editor">
+    <h3>Edit selected text</h3>
+    <textarea
+      #editor
+      rows="3"
+      [value]="text.text"
+      (input)="setText(text, $event)"
+      (blur)="endGesture()"
+      aria-label="Text content"
+    ></textarea>
+
+    <label class="field">
+      <span class="row"><span>Size</span><span>{{ text.style.fontSize }}px</span></span>
+      <input type="range" min="20" max="220" [value]="text.style.fontSize" (input)="setStyle(text, { fontSize: +$any($event.target).value })" (change)="endGesture()" />
+    </label>
+
+    <div class="toggles">
+      <button type="button" class="btn small" [class.on]="text.style.fontWeight === 'bold'" (click)="setStyle(text, { fontWeight: text.style.fontWeight === 'bold' ? 'normal' : 'bold' }, true)">
+        <strong>B</strong> Bold
+      </button>
+      <button type="button" class="btn small" [class.on]="text.style.shadow" (click)="setStyle(text, { shadow: !text.style.shadow }, true)">Shadow</button>
+    </div>
+
+    <div>
+      <h3>Colour</h3>
+      <div class="swatches">
+        @for (color of colors; track color) {
+          <button type="button" class="swatch" [class.active]="text.style.fill === color" [style.background]="color" (click)="setStyle(text, { fill: color }, true)" [attr.aria-label]="'Text colour ' + color"></button>
+        }
+      </div>
+    </div>
+
+    <div>
+      <h3>Background</h3>
+      <div class="swatches">
+        <button type="button" class="swatch none" [class.active]="!text.style.background" (click)="setStyle(text, { background: null }, true)" aria-label="No background"></button>
+        @for (color of colors; track color) {
+          <button type="button" class="swatch" [class.active]="text.style.background === color" [style.background]="color" (click)="setStyle(text, { background: color }, true)" [attr.aria-label]="'Background ' + color"></button>
+        }
+      </div>
+    </div>
+  </section>
+} @else {
+  <p class="hint">Select a text clip on the canvas or timeline to edit it. Double-click text to jump straight here.</p>
+}
